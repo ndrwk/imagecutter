@@ -9,13 +9,22 @@ class FileReader
 {
 	vector <int> coordinates;
 	int points;
-	Point LeftEye, RightEye, Mouth, LeftEar1, LeftEar2, LeftEar3, RightEar1, RightEar2, RightEar3;
+	int LeftEye = 0;
+	int RightEye = 1;
+	int Mouth = 2;
+	int LeftEar1 = 3;
+	int LeftEar2 = 4;
+	int LeftEar3 = 5;
+	int RightEar1 = 6;
+	int RightEar2 = 7;
+	int RightEar3 = 8;
 	string name;
+	string recFileName;
 
 public:
-	FileReader(string filename);
+	FileReader(string,string,int);
 	~FileReader();
 	vector<int> getCoordinates();
-	void showPic(Mat);
+	void cutFaces(Mat);
 };
 

@@ -11,6 +11,7 @@ using namespace std;
 
 FolderReader::FolderReader(string path, string filemame)
 {
+	int recFileName = 70000;
 	ifstream file(path + filemame);
 	string textLine;
 	while (!file.eof())
@@ -19,8 +20,9 @@ FolderReader::FolderReader(string path, string filemame)
 		if (textLine.length() == 0) break;
 		PicLoader p_loader(path + textLine);
 		getline(file, textLine);
-		FileReader reader(path + textLine);
-		reader.showPic(p_loader.getMat());
+		FileReader reader(path + textLine, path, recFileName);
+		reader.cutFaces(p_loader.getMat());
+		recFileName++;
 	}
 	file.close();
 

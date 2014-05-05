@@ -12,7 +12,7 @@
 using namespace std;
 using namespace cv;
 
-const string path = "C:\\Temp\\cats\\CAT_05\\";
+const string path = "C:\\Temp\\cats\\CAT_06\\";
 const string filename = "1.txt";
 
 
