@@ -9,22 +9,29 @@
 using namespace std;
 
 
-FolderReader::FolderReader(string path, string filemame)
+FolderReader::FolderReader(string path, string filemame, string descfilename, string destinationpath, int fileNumber)
 {
-	int recFileName = 70000;
-	ifstream file(path + filemame);
+	ifstream picFile(path + filemame);
+	ofstream descFile;
+	descFile.open(descfilename, ios::app);
 	string textLine;
-	while (!file.eof())
+	while (!picFile.eof())
 	{
-		getline(file, textLine);
+		stringstream ss;
+		ss << fileNumber;
+		string recFileName = ss.str();
+		getline(picFile, textLine);
 		if (textLine.length() == 0) break;
 		PicLoader p_loader(path + textLine);
-		getline(file, textLine);
-		FileReader reader(path + textLine, path, recFileName);
-		reader.cutFaces(p_loader.getMat());
-		recFileName++;
+		getline(picFile, textLine);
+		FileReader reader(path + textLine, path, recFileName, destinationpath);
+		string descLine = reader.cutFaces(p_loader.getMat());
+		string desc = "Good\\"+recFileName+".jpg "+descLine+"\n";
+		descFile << desc;
+		fileNumber++;
 	}
-	file.close();
+	picFile.close();
+	descFile.close();
 
 
 }

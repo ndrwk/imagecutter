@@ -8,6 +8,7 @@ using namespace cv;
 class FileReader
 {
 	vector <int> coordinates;
+	Mat recfile;
 	int points;
 	int LeftEye = 0;
 	int RightEye = 1;
@@ -18,13 +19,12 @@ class FileReader
 	int RightEar1 = 6;
 	int RightEar2 = 7;
 	int RightEar3 = 8;
-	string name;
-	string recFileName;
+	string recName;
 
 public:
-	FileReader(string,string,int);
+	FileReader(string,string,string, string);
 	~FileReader();
 	vector<int> getCoordinates();
-	void cutFaces(Mat);
+	string cutFaces(Mat);
 };
 

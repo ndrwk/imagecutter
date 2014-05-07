@@ -12,14 +12,17 @@
 using namespace std;
 using namespace cv;
 
-const string path = "C:\\Temp\\cats\\CAT_06\\";
-const string filename = "1.txt";
+const string sourcepath = "C:\\Temp\\cats\\CAT_06\\";
+const int fileNumber = 70000;
+const string destinationpath = "C:\\Temp\\cats\\haartraining\\Good\\";
+const string descfilename = "C:\\Temp\\cats\\haartraining\\Good.dat";
+const string filesList = "1.txt";
 
 
 
 int main(int argc, char *argv[])
 {
-	FolderReader f_reader(path, filename);
+	FolderReader f_reader(sourcepath, filesList, descfilename, destinationpath, fileNumber);
 
 
 

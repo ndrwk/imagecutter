@@ -6,7 +6,7 @@ using namespace std;
 class FolderReader
 {
 public:
-	FolderReader(string, string);
+	FolderReader(string, string, string, string, int);
 	~FolderReader();
 };
 

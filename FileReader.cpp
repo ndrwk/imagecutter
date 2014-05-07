@@ -9,12 +9,9 @@ using namespace std;
 using namespace cv;
 
 
-FileReader::FileReader(string filename, string path, int fileNumber)
+FileReader::FileReader(string filename, string path, string fileNumber, string destinationpath)
 {
-	stringstream ss;
-	ss << fileNumber;
-	recFileName = path+"cut\\"+ss.str()+".jpg";
-	name = filename;
+	recName = destinationpath + fileNumber + ".jpg";
 	string delimiter = " ";
 	ifstream file(filename);
 	string textLine;
@@ -42,7 +39,7 @@ vector<int> FileReader::getCoordinates()
 	return coordinates;
 }
 
-void FileReader::cutFaces(Mat pic)
+string FileReader::cutFaces(Mat pic)
 {
 	vector<Point> labels;
 	if (coordinates.size() == 19)
@@ -79,24 +76,33 @@ void FileReader::cutFaces(Mat pic)
 		if (maxX > pic.cols) maxX = pic.cols;
 		if (maxY > pic.rows) maxY = pic.rows;
 		Rect rect(Point(minX, minY), Point(maxX, maxY));
-		Mat recfile = pic(rect);
-		imwrite(recFileName, recfile);
-
-
-		/*
-			circle(pic, LeftEye, 10, Scalar(255,0,0), 3);
-			circle(pic, RightEye, 10, Scalar(255, 0, 0), 3);
-			circle(pic, Mouth, 10, Scalar(255, 0, 0), 3);
-			circle(pic, LeftEar1, 10, Scalar(255, 0, 0), 3);
-			circle(pic, LeftEar2, 10, Scalar(255, 0, 0), 3);
-			circle(pic, LeftEar3, 10, Scalar(255, 0, 0), 3);
-			circle(pic, RightEar1, 10, Scalar(255, 0, 0), 3);
-			circle(pic, RightEar2, 10, Scalar(255, 0, 0), 3);
-			circle(pic, RightEar3, 10, Scalar(255, 0, 0), 3);
-			*/
+		recfile = pic(rect);
+		imwrite(recName, recfile);
 	}
 	else
 	{
 		cout << "wrong" << endl;
 	}
+	stringstream ss;
+	ss << "1 " << "0 0 " << recfile.cols-1 << " " << recfile.rows-1;
+	return ss.str();
+
 }
+
+
+
+
+
+
+
+/*
+circle(pic, LeftEye, 10, Scalar(255,0,0), 3);
+circle(pic, RightEye, 10, Scalar(255, 0, 0), 3);
+circle(pic, Mouth, 10, Scalar(255, 0, 0), 3);
+circle(pic, LeftEar1, 10, Scalar(255, 0, 0), 3);
+circle(pic, LeftEar2, 10, Scalar(255, 0, 0), 3);
+circle(pic, LeftEar3, 10, Scalar(255, 0, 0), 3);
+circle(pic, RightEar1, 10, Scalar(255, 0, 0), 3);
+circle(pic, RightEar2, 10, Scalar(255, 0, 0), 3);
+circle(pic, RightEar3, 10, Scalar(255, 0, 0), 3);
+*/
