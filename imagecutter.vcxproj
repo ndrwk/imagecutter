@@ -81,12 +81,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Capture.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="FolderReader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PicLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Capture.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="FolderReader.h" />
     <ClInclude Include="PicLoader.h" />
