@@ -23,13 +23,18 @@ bool Capture::isOpened()
 
 void Capture::grabFrame(int limit, string path)
 {
-//	if (!isOpened) return;
+	if (!isOpened())
+	{
+		cout << "Camera not found" << endl;
+		return;
+	}
 	int frameCount = 0;
 	while (frameCount < limit)
 	{
 		capture >> frame;
+		cvtColor(frame, frame, CV_BGR2GRAY);
 		stringstream ss;
-		ss << path << frameCount << ".jpg";
+		ss << path << "img" << frameCount << ".bmp";
 		string filename = ss.str();
 		imwrite(filename, frame);
 		cout << filename << endl;

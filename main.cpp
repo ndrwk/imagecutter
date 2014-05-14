@@ -17,7 +17,8 @@ const string sourcepath = "C:\\Temp\\cats\\CAT_06\\";
 const int fileNumber = 70000;
 const string destinationpath = "C:\\Temp\\cats\\haartraining\\";
 const string filesList = "1.txt";
-const int limitBad = 200;
+const int limitBad = 3000;
+const int cameraNumber = 0;
 
 
 
@@ -28,10 +29,10 @@ int main(int argc, char *argv[])
 	string Good_dat = destinationpath + "Good.dat";
 	string Bad_dat = destinationpath + "Bad.dat";
 
-//	FolderReader f_reader(sourcepath, filesList, Good_dat, GoodPath, fileNumber);
+	FolderReader f_reader(sourcepath, filesList, Good_dat, GoodPath, fileNumber);
 
-	Capture capture(0);
-	capture.grabFrame(limitBad, BadPath);
+//	Capture capture(cameraNumber);
+//	capture.grabFrame(limitBad, BadPath);
 
 
 

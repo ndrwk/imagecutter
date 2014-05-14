@@ -11,7 +11,7 @@ using namespace cv;
 
 FileReader::FileReader(string filename, string path, string fileNumber, string destinationpath)
 {
-	recName = destinationpath + fileNumber + ".jpg";
+	recName = destinationpath + fileNumber + ".bmp";
 	string delimiter = " ";
 	ifstream file(filename);
 	string textLine;
@@ -77,6 +77,7 @@ string FileReader::cutFaces(Mat pic)
 		if (maxY > pic.rows) maxY = pic.rows;
 		Rect rect(Point(minX, minY), Point(maxX, maxY));
 		recfile = pic(rect);
+		cvtColor(recfile, recfile, CV_BGR2GRAY);
 		imwrite(recName, recfile);
 	}
 	else

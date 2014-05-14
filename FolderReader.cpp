@@ -26,7 +26,7 @@ FolderReader::FolderReader(string path, string filemame, string descfilename, st
 		getline(picFile, textLine);
 		FileReader reader(path + textLine, path, recFileName, destinationpath);
 		string descLine = reader.cutFaces(p_loader.getMat());
-		string desc = "Good\\"+recFileName+".jpg "+descLine+"\n";
+		string desc = "Good\\"+recFileName+".bmp "+descLine+"\n";
 		descFile << desc;
 		fileNumber++;
 	}
