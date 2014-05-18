@@ -1,6 +1,7 @@
 #include "FolderReader.h"
 #include "FileReader.h"
 #include "PicLoader.h"
+#include "Dots.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -9,33 +10,52 @@
 using namespace std;
 
 
-FolderReader::FolderReader(string path, string filemame, string descfilename, string destinationpath, int fileNumber)
+FolderReader::FolderReader(string path, string filesList, string descfilename, string destinationpath, int fileNumber)
 {
-	ifstream picFile(path + filemame);
+	ifstream listFileName(path + filesList);
 	ofstream descFile;
 	descFile.open(descfilename, ios::app);
 	string textLine;
-	while (!picFile.eof())
+	while (!listFileName.eof())
 	{
 		stringstream ss;
 		ss << fileNumber;
 		string recFileName = ss.str();
-		getline(picFile, textLine);
+		getline(listFileName, textLine);
 		if (textLine.length() == 0) break;
 		PicLoader p_loader(path + textLine);
-		getline(picFile, textLine);
+		getline(listFileName, textLine);
 		FileReader reader(path + textLine, path, recFileName, destinationpath);
 		string descLine = reader.cutFaces(p_loader.getMat());
-		string desc = "Good\\"+recFileName+".bmp "+descLine+"\n";
-		descFile << desc;
-		fileNumber++;
+		if (descLine != "wrong")
+		{
+			string desc = "Good\\" + recFileName + ".bmp " + descLine + "\n";
+			descFile << desc;
+			fileNumber++;
+		}
 	}
-	picFile.close();
+	listFileName.close();
 	descFile.close();
-
-
 }
 
+
+FolderReader::FolderReader(string path, string filesList)
+{
+	ifstream listFileName(path + filesList);
+	string textLine;
+	while (!listFileName.eof())
+	{
+		getline(listFileName, textLine);
+		if (textLine.length() == 0) break;
+		PicLoader ploader(path + textLine);
+		Dots pointer(ploader.getMat());
+		pointer.getPoints();
+		cout << path + textLine << endl;
+
+
+	}
+	listFileName.close();
+}
 
 FolderReader::~FolderReader()
 {
