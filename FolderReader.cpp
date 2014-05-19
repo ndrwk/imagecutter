@@ -39,7 +39,7 @@ FolderReader::FolderReader(string path, string filesList, string descfilename, s
 }
 
 
-FolderReader::FolderReader(string path, string filesList)
+FolderReader::FolderReader(string path, string filesList, string dest)
 {
 	ifstream listFileName(path + filesList);
 	string textLine;
@@ -49,10 +49,12 @@ FolderReader::FolderReader(string path, string filesList)
 		if (textLine.length() == 0) break;
 		PicLoader ploader(path + textLine);
 		Dots pointer(ploader.getMat());
-		pointer.getPoints();
+		string points = pointer.getPoints(dest + textLine);
 		cout << path + textLine << endl;
-
-
+		ofstream pointsFile;
+		pointsFile.open(dest + textLine + ".cat", ios::app);
+		pointsFile << points;
+		pointsFile.close();
 	}
 	listFileName.close();
 }

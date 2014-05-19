@@ -21,13 +21,13 @@ public:
 			Point* ptPtr = (Point*)param;
 			ptPtr->x = x;
 			ptPtr->y = y;
-			cout << "leftClick " << x << " " << y << endl;
+//			cout << "leftClick " << x << " " << y << endl;
 		}
 	}
 
 public:
 	Dots(Mat);
-	string getPoints();
+	string getPoints(string);
 	~Dots();
 };
 

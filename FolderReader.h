@@ -8,7 +8,7 @@ class FolderReader
 
 public:
 	FolderReader(string, string, string, string, int);
-	FolderReader(string, string);
+	FolderReader(string, string, string);
 	~FolderReader();
 };
 

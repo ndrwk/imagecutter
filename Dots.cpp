@@ -19,27 +19,25 @@ Dots::Dots(Mat pic)
 	point = Point (-1, -1);
 }
 
-string Dots::getPoints()
+string Dots::getPoints(string fileName)
 {
-	Mat tmpFrame(frame);
-	string result;
+	Mat tmpFrame;
+	frame.copyTo(tmpFrame);
+	stringstream ss;
+	ss << "9 ";
 	imshow(picName, tmpFrame);
 	setMouseCallback(picName, onMouse, (void*)&point);
 	for (int i = 0; i < 9; i++)
 	{
-		while (1)
-		{
-			if (point.x!=-1) break;
-		}
+		waitKey();
 		circle(tmpFrame, point, 10, Scalar(255, 0, 0), -1);
 		imshow(picName, tmpFrame);
+		ss << point.x << " " << point.y << " ";
 		point = Point(-1, -1);
 	}
-	cout << point.x << " " << point.y << endl;
-	waitKey();
-
+	imwrite(fileName, frame);
 	destroyWindow(picName);
-	return result;
+	return ss.str();
 }
 
 
