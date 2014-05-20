@@ -87,6 +87,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PicLoader.cpp" />
     <ClCompile Include="Dots.cpp" />
+    <ClCompile Include="TestCascade.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Capture.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="FolderReader.h" />
     <ClInclude Include="PicLoader.h" />
     <ClInclude Include="Dots.h" />
+    <ClInclude Include="TestCascade.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,5 +11,6 @@ public:
 	PicLoader(string);
 	~PicLoader();
 	Mat getMat();
+	Mat getMat800600();
 };
 
