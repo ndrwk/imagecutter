@@ -12,5 +12,6 @@ public:
 	~PicLoader();
 	Mat getMat();
 	Mat getMat800600();
+	Mat rotate(double);
 };
 

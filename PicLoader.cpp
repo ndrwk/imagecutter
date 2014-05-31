@@ -23,6 +23,21 @@ Mat PicLoader::getMat()
 Mat PicLoader::getMat800600()
 {
 	Mat mat;
-	resize(pic, mat, Size(800, 600));
-	return mat;
+	if (mat.cols > 800)
+	{
+		resize(pic, mat, Size(800, 600));
+		return mat;
+	}
+	else
+		return pic;
+}
+
+Mat PicLoader::rotate(double angle)
+{
+	int len = max(pic.cols, pic.rows);
+	Point2f pt(len / 2., len / 2.);
+	Mat r = getRotationMatrix2D(pt, angle, 1.0);
+	Mat dst;
+	warpAffine(pic, dst, r, Size(len, len));
+	return dst;
 }

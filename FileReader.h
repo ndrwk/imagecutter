@@ -20,6 +20,8 @@ class FileReader
 	int RightEar2 = 7;
 	int RightEar3 = 8;
 	string recName;
+	Mat rotate(Mat, double, Point2f);
+
 
 public:
 	FileReader(string,string,string, string);
